@@ -15,4 +15,15 @@ class LiftTest {
         assertThat(lift.at).isEqualTo(2)
         assertThat(lift.goingTo).isEqualTo(Direction.UP)
     }
+
+    @Test
+    fun queues_calls_when_not_going_the_same_direction() {
+        var lift = Lift(0, Direction.STOPPED)
+
+        lift = lift.calledFrom(2, Direction.UP)
+        lift = lift.calledFrom(2, Direction.DOWN)
+
+        assertThat(lift.at).isEqualTo(2)
+        assertThat(lift.goingTo).isEqualTo(Direction.UP)
+    }
 }
