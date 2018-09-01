@@ -6,12 +6,13 @@ import org.junit.Test
 class LiftTest {
     @Test
     fun moves_when_called() {
-        var lift = Lift()
-        assertThat(lift.at).equalsTo(0)
+        var lift = Lift(0, Direction.STOPPED)
+        assertThat(lift.at).isEqualTo(0)
+        assertThat(lift.goingTo).isEqualTo(Direction.STOPPED)
 
-        lift.calledFrom(2, UP)
+        lift = lift.calledFrom(2, Direction.UP)
 
-        assertThat(lift.at).equalsTo(2)
-        assertThat(lift.goingTo).equalsTo(UP)
+        assertThat(lift.at).isEqualTo(2)
+        assertThat(lift.goingTo).isEqualTo(Direction.UP)
     }
 }
