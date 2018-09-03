@@ -11,4 +11,13 @@ class LiftAcceptanceTest {
 
         assertThat(lift.floor).isEqualTo(0)
     }
+
+    @Test
+    fun `responds to calls containing a source floor and direction`() {
+        var lift = Lift(0)
+
+        lift = lift.callFrom(2, Direction.UP)
+
+        assertThat(lift.nextStop()).isEqualTo(2)
+    }
 }
