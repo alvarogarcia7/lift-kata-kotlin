@@ -23,13 +23,16 @@ class LiftAcceptanceTest {
     }
 
     @Test
-    fun `do not queue call when the lift is busy`() {
+    fun `queue call when the lift is busy`() {
         val lift = Lift(0)
 
-        lift.callFrom(2, Direction.UP)
-        lift.callFrom(3, Direction.UP)
-
+        val promise1 = lift.callFrom(2, Direction.UP)
         assertThat(lift.nextStop()).isEqualTo(Optional.of(2))
+        promise1.then { it.select(3) }
+        val promise2 = lift.callFrom(4, Direction.UP)
+        assertThat(lift.nextStop()).isEqualTo(Optional.of(4))
+        promise2.then { it.select(5) }
+        assertThat(lift.nextStop()).isEqualTo(Optional.empty<Int>())
     }
 
     @Test

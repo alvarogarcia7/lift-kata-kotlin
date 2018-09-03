@@ -9,9 +9,9 @@ class Lift(var floor: Int) {
         if (!nextStop.isPresent) {
             this.nextStop = Optional.of(source)
         }
-        val completableFuture = Promise<Buttons>()
-        completableFuture.complete(Buttons(this))
-        return completableFuture
+        val promise = Promise<Buttons>()
+        promise.complete(Buttons(this))
+        return promise
     }
 
     fun nextStop(): Optional<Int> {
@@ -20,5 +20,6 @@ class Lift(var floor: Int) {
 
     fun goTo(floor: Int) {
         this.floor = floor
+        this.nextStop = Optional.empty()
     }
 }
