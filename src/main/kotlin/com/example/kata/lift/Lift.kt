@@ -1,14 +1,18 @@
 package com.example.kata.lift
 
+import java.util.*
+
 class Lift(val floor: Int) {
-    var nextStop: Int = 0
+    var nextStop: Optional<Int> = Optional.empty()
 
     fun callFrom(source: Int, direction: Direction): Lift {
-        this.nextStop = source
+        if (!nextStop.isPresent) {
+            this.nextStop = Optional.of(source)
+        }
         return this
     }
 
-    fun nextStop(): Int {
+    fun nextStop(): Optional<Int> {
         return this.nextStop
     }
 }

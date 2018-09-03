@@ -2,6 +2,7 @@ package com.example.kata.lift
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import java.util.*
 
 class LiftAcceptanceTest {
 
@@ -18,6 +19,16 @@ class LiftAcceptanceTest {
 
         lift = lift.callFrom(2, Direction.UP)
 
-        assertThat(lift.nextStop()).isEqualTo(2)
+        assertThat(lift.nextStop()).isEqualTo(Optional.of(2))
+    }
+
+    @Test
+    fun `do not queue call when the lift is busy`() {
+        var lift = Lift(0)
+
+        lift = lift.callFrom(2, Direction.UP)
+        lift = lift.callFrom(3, Direction.UP)
+
+        assertThat(lift.nextStop()).isEqualTo(Optional.of(2))
     }
 }
