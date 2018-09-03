@@ -1,5 +1,4 @@
 package com.example.kata.lift
 
-class Lift {
-    val floor: Int = 0
+class Lift(val floor: Int) {
 }
