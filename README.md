@@ -1,4 +1,4 @@
-# lift-kata-kotlin
+# Lift Kata in kotlin
 
 Practiced the [lift kata](http://kata-log.rocks/lift-kata) in kotlin
 
